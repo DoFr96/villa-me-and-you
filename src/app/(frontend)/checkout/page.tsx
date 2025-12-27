@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import { getBookingWidgetData, calculatePrice } from '@/lib/booking/api'
 import CheckoutClient from './CheckoutClient'
+import Link from 'next/link'
 
 type SearchParams = {
   propertySlug?: string
@@ -51,9 +52,9 @@ export default async function CheckoutPage({
         <div className="text-center">
           <p className="text-red-500 text-xl mb-2">Greška</p>
           <p className="text-gray-500">{error || 'Nekretnina nije pronađena'}</p>
-          <a href="/" className="text-amber-600 underline mt-4 block">
+          <Link href="/" className="text-amber-600 underline mt-4 block">
             Natrag na početnu
-          </a>
+          </Link>
         </div>
       </div>
     )

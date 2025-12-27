@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { createBooking } from '@/lib/booking/api'
+import Link from 'next/link'
 
 type GuestInfo = {
   firstName: string
@@ -107,18 +108,18 @@ export default function CheckoutClient({
       {/* Header */}
       <header className="bg-white border-b border-stone-200">
         <div className="max-w-6xl mx-auto px-6 py-4">
-          <a href="/" className="font-serif text-2xl tracking-wide">
+          <Link href="/" className="font-serif text-2xl tracking-wide">
             Villa Me and You
-          </a>
+          </Link>
         </div>
       </header>
 
       <div className="max-w-6xl mx-auto px-6 py-12">
         {/* Breadcrumb */}
         <nav className="text-sm text-stone-500 mb-8">
-          <a href="/" className="hover:text-stone-900 transition">
+          <Link href="/" className="hover:text-stone-900 transition">
             Početna
-          </a>
+          </Link>
           <span className="mx-2">/</span>
           <span className="text-stone-900">Završetak rezervacije</span>
         </nav>
@@ -381,9 +382,9 @@ export default function CheckoutClient({
                     />
                     <span className="text-sm text-stone-600">
                       Prihvaćam{' '}
-                      <a href="/terms" className="text-amber-600 hover:underline">
+                      <Link href="/terms" className="text-amber-600 hover:underline">
                         uvjete korištenja
-                      </a>
+                      </Link>
                     </span>
                   </label>
                   <label className="flex items-start gap-3 cursor-pointer">
