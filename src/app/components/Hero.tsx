@@ -6,7 +6,7 @@ import { BookingWidget } from './booking/BookingWidget'
 
 export default function Hero() {
   return (
-    <main className="h-[100svh] w-full px-2 sm:px-3 pt-2 sm:pt-3 pb-0 overflow-hidden">
+    <main className="min-h-[100svh] md:h-[100svh] w-full px-2 sm:px-3 pt-2 sm:pt-3 pb-0 overflow-hidden">
       <div className="h-full w-full rounded-[2rem] bg-white overflow-hidden flex flex-col">
         <Navbar />
 
@@ -39,7 +39,7 @@ export default function Hero() {
           {/* RIGHT (IMAGE) */}
           <div className="min-h-0 w-full lg:w-1/2 flex-1 p-3 md:p-4 lg:p-6 pb-4 md:pb-4 lg:pb-6">
             {/* min-h da nikad ne padne na 0 na tablet/mob */}
-            <div className="relative h-full min-h-[220px]  w-full overflow-hidden rounded-2xl bg-stone-100">
+            <div className="relative h-full min-h-[280px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-0 w-full overflow-hidden rounded-2xl bg-stone-100">
               <Image
                 src="/media/coverTesting.jpg"
                 alt="Villa Me and You"
