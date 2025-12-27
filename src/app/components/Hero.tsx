@@ -19,13 +19,13 @@ export default function Hero() {
                 Istra, Hrvatska
               </p>
 
-              <h1 className=" text-stone-900 text-4xl sm:text-4xl md:text-5xl leading-tight tracking-tight font-playfair">
+              <h1 className=" text-stone-900 text-[clamp(3.5rem,4.5vw,5.5rem)] leading-tight tracking-tight font-playfair">
                 Vaše utočište
                 <br />
                 <span className="text-[#a39e6e]">mira i luksuza</span>
               </h1>
 
-              <p className="text-stone-500 mt-5 max-w-md font-light leading-relaxed text-[clamp(1.1rem,1.3vw,1.4rem)]">
+              <p className="text-stone-500 mt-5 max-w-md font-light leading-relaxed text-[clamp(1.1rem,1.3vw,1.3rem)]">
                 Privatna vila s grijanim bazenom, wellness sadržajima i pogledom na istarske
                 brežuljke.
               </p>
