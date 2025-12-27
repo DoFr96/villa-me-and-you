@@ -25,27 +25,14 @@ export default async function HomePage() {
 
   return (
     <>
-      <style>{`
-        :root { --page-bg: #a39e6e; }
-        html { background: var(--page-bg) !important; }
-        body { background: #fff; }
-      `}</style>
-
-      {/* traka gore ispod notcha */}
-      <div
-        className="fixed inset-x-0 top-0 z-[9999] h-[env(safe-area-inset-top)]"
-        style={{ background: 'var(--page-bg)' }}
-      />
-
-      <div className="pt-[env(safe-area-inset-top)]">
-        <section>
-          <Hero />
-          <Intro />
-          <Gallery />
-          <Location />
-          <Contact />
-        </section>
-      </div>
+      <style>{`:root { --page-bg: #a39e6e; }`} </style>
+      <section>
+        <Hero />
+        <Intro />
+        <Gallery />
+        <Location />
+        <Contact />
+      </section>
     </>
   )
 }
