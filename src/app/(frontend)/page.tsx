@@ -25,16 +25,18 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* samo za homepage postavi boju overscrola / safe-area */}
-      <style>{`:root { --page-bg: #a39e6e; }`}</style>
+      <style>{`
+        :root { --page-bg: #a39e6e; }
+        html { background: var(--page-bg) !important; }
+        body { background: #fff; }
+      `}</style>
 
-      {/* traka gore (ispod notcha) */}
+      {/* traka gore ispod notcha */}
       <div
         className="fixed inset-x-0 top-0 z-[9999] h-[env(safe-area-inset-top)]"
         style={{ background: 'var(--page-bg)' }}
       />
 
-      {/* da sadržaj ne uđe pod notch */}
       <div className="pt-[env(safe-area-inset-top)]">
         <section>
           <Hero />
