@@ -1,0 +1,6 @@
+.next
+node_modules
+.payload
+dist
+build
+payload-types.ts

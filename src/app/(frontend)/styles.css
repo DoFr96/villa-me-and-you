@@ -1,0 +1,59 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@theme inline {
+  --font-sans: var(--font-manrope);
+  --font-serif: var(--font-playfair);
+  /* Clean premium (najsigurnije) */
+  /*  --font-sans: var(--font-manrope);
+  --font-serif: var(--font-manrope); */
+
+  /* Luksuzni naslovi (hotel/vila vibe) */
+  /* --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair); */
+
+  /* Boutique editorial (mekše, elegantno) */
+  /* --font-sans: var(--font-manrope);
+  --font-serif: var(--font-cormorant); */
+
+  /* Helvetica/Neue Haas "feel" zamjena */
+  /* --font-sans: var(--font-worksans);
+  --font-serif: var(--font-worksans); */
+
+  /* Futura-ish zamjena */
+  /* --font-sans: var(--font-montserrat);
+  --font-serif: var(--font-montserrat); */
+
+  /*--font-sans: var(--font-inter);
+--font-serif: var(--font-cormorant);*/
+  --radius: 0.625rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+  }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
