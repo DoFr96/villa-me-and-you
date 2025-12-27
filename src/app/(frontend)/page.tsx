@@ -24,14 +24,26 @@ export default async function HomePage() {
   const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
 
   return (
-    <main className="bg-[#a39e6e] min-h-screen">
-      <section>
-        <Hero />
-        <Intro />
-        <Gallery />
-        <Location />
-        <Contact />
-      </section>
-    </main>
+    <>
+      {/* samo za homepage postavi boju overscrola / safe-area */}
+      <style>{`:root { --page-bg: #a39e6e; }`}</style>
+
+      {/* traka gore (ispod notcha) */}
+      <div
+        className="fixed inset-x-0 top-0 z-[9999] h-[env(safe-area-inset-top)]"
+        style={{ background: 'var(--page-bg)' }}
+      />
+
+      {/* da sadržaj ne uđe pod notch */}
+      <div className="pt-[env(safe-area-inset-top)]">
+        <section>
+          <Hero />
+          <Intro />
+          <Gallery />
+          <Location />
+          <Contact />
+        </section>
+      </div>
+    </>
   )
 }
