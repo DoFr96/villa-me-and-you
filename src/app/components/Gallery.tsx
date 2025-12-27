@@ -35,7 +35,7 @@ export default function Gallery() {
     <div className="w-full px-2 sm:px-3  overflow-hidden ">
       <div className="h-full w-full rounded-[2rem] bg-white overflow-hidden">
         <section className="px-3 md:px-6 xl:px-20 pt-20 pb-3 xs:pb-0 sm:py-28 lg:py-32">
-          <div className="px-8 md:px-16 lg:px-20 mb-12 flex justify-between items-end">
+          <div className="px-3 md:px-16 lg:px-20 mb-12 flex justify-between items-end">
             <div>
               <p className="text-stone-400 text-xs tracking-[0.3em] uppercase md:mb-4 mb-2">
                 Galerija
@@ -64,7 +64,8 @@ export default function Gallery() {
 
           <div
             ref={scrollRef}
-            className="flex gap-4 overflow-x-auto px-8 md:px-16 lg:px-20 pb-4 scroll-smooth snap-x snap-mandatory scrollbar-hide"
+            className="flex gap-4 overflow-x-auto px-8 md:px-16 lg:px-20 pb-4 scroll-smooth snap-x snap-mandatory scrollbar-hide overscroll-x-contain"
+            style={{ WebkitOverflowScrolling: 'auto' }}
           >
             {images.map((img, i) => (
               <div

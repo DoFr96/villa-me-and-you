@@ -20,7 +20,7 @@ export default function Location() {
     <div className="w-full px-2 sm:px-3  overflow-hidden ">
       <div className="h-full w-full rounded-[2rem] bg-white overflow-hidden">
         <section className="px-6 md:px-12 lg:px-20 py-20 md:py-32 overflow-hidden">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-[1500px] mx-auto">
             {/* Header */}
             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
               <div>

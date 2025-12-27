@@ -15,11 +15,11 @@ export default function Hero() {
           <div className=" w-full lg:w-1/2 flex flex-col md:gap-10 gap-5 justify-center px-6 md:px-12 lg:px-14 xl:px-20  py-10 md:py-12 ">
             {/* Na manjim ekranima NE raste u visinu (da ne pojede sliku) */}
             <div className="flex flex-col ">
-              <p className="text-stone-400 text-xs md:text-sm tracking-[0.3em] uppercase mb-4">
+              <p className="text-stone-400 text-xs md:text-sm tracking-[0.3em] uppercase md:mb-4 mb-2">
                 Istra, Hrvatska
               </p>
 
-              <h1 className=" text-stone-900 text-[clamp(3.5rem,4.5vw,5.5rem)] leading-tight tracking-tight font-playfair">
+              <h1 className=" text-stone-900 text-[clamp(3.6rem,4.5vw,5.5rem)] leading-[1.1] sm:leading-tight tracking-tight font-playfair">
                 Vaše utočište
                 <br />
                 <span className="text-[#a39e6e]">mira i luksuza</span>

@@ -57,3 +57,7 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+html {
+  background-color: var(--page-bg, white);
+}

@@ -12,7 +12,7 @@ const Intro = () => {
             {/*LIJEVA STRANA GORE I DOLE*/}
             <div className="flex-1 flex flex-col justify-center gap-10 px-2 md:order-2">
               {/*CIJELA LIJEVA STRANA GORE*/}
-              <div className="flex md:flex-row flex-col  gap-10">
+              <div className="flex flex-col  gap-10">
                 {/*NASLOV SECTION*/}
                 <div className="flex flex-1 flex-col">
                   <span className="text-sm text-black/50 uppercase mb-1 tracking-wider">
