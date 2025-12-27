@@ -59,5 +59,9 @@
 }
 
 html {
+  background-color: white;
+}
+
+body {
   background-color: var(--page-bg, white);
 }

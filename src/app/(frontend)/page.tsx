@@ -24,8 +24,7 @@ export default async function HomePage() {
   const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
 
   return (
-    <>
-      <style>{`:root { --page-bg: #a39e6e; }`} </style>
+    <main className="bg-[#a39e6e] min-h-screen">
       <section>
         <Hero />
         <Intro />
@@ -33,6 +32,6 @@ export default async function HomePage() {
         <Location />
         <Contact />
       </section>
-    </>
+    </main>
   )
 }

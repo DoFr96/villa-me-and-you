@@ -32,6 +32,7 @@ const cormorant = Cormorant_Garamond({
 export const metadata = {
   description: 'Villa Me and You - Luksuzni odmor u Hrvatskoj',
   title: 'Villa Me and You',
+  themeColor: '#ffffff',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
