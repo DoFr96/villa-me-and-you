@@ -39,8 +39,7 @@ export default function Hero() {
                   </h1>
 
                   <p className="text-stone-500 mt-5 max-w-md font-light leading-relaxed text-[clamp(1.1rem,1.3vw,1.3rem)]">
-                    Privatna vila s grijanim bazenom, wellness sadržajima i pogledom na istarske
-                    brežuljke.
+                    Privatna vila s grijanim bazenom, wellness sadržajima okružena zelenilom.
                   </p>
                 </div>
 
