@@ -14,6 +14,9 @@ import Gallery from '../components/Gallery'
 import Location from '../components/Location'
 import { Amenities } from '../components/Amenities'
 import Contact from '../components/Contact'
+import Faqs from '../components/Faqs'
+import Opening from '../components/Opening'
+import PageLoader from '../components/PageLoader'
 
 export default async function HomePage() {
   const headers = await getHeaders()
@@ -25,12 +28,15 @@ export default async function HomePage() {
 
   return (
     <>
-      <style>{`:root { --page-bg: #a39e6e; }`} </style>
+      <PageLoader />
+      <style dangerouslySetInnerHTML={{ __html: `:root { --page-bg: #a39e6e; }` }} />
+
       <section>
         <Hero />
         <Intro />
         <Gallery />
         <Location />
+        <Faqs />
         <Contact />
       </section>
     </>

@@ -19,9 +19,7 @@ const Intro = () => {
                     Zasto Villa you & me
                   </span>
                   <h2 className="text-4xl sm:text-4xl md:text-5xl leading-tight tracking-tight font-playfair">
-                    Unikatna villa za{' '}
-                    <span className="bg-[#a39e6e] bg-clip-text text-transparent">posebne </span>{' '}
-                    trenutke
+                    Unikatna villa za <span className="text-[#a39e6e] ">posebne </span> trenutke
                   </h2>
                 </div>
                 {/*DESCRIPTION SECTION*/}
@@ -33,11 +31,11 @@ const Intro = () => {
               {/*RED ISPOD SECTION*/}
               <div className="flex flex-row justify-between">
                 <p className="flex flex-col items-center gap-1">
-                  <House className="text-amber-700" />
+                  <House className="text-[#a39e6e] " />
                   <span className="font-medium tracking-wide">100m2</span>{' '}
                 </p>
                 <p className="flex flex-col items-center gap-1">
-                  <Trees className="text-green-500" />{' '}
+                  <Trees className="text-[#a39e6e] " />{' '}
                   <span className="font-medium tracking-wide">750m2</span>
                 </p>
                 <p className="flex flex-col items-center gap-1">
@@ -45,7 +43,7 @@ const Intro = () => {
                   <span className="font-medium tracking-wide">2 + 1</span>
                 </p>
                 <p className="flex flex-col items-center gap-1">
-                  <Bath className="text-blue-500" />{' '}
+                  <Bath className="text-[#a39e6e] " />{' '}
                   <span className="font-medium tracking-wide">1.5</span>
                 </p>
               </div>

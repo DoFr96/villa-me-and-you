@@ -3,55 +3,70 @@
 import Image from 'next/image'
 import Navbar from './Navbar'
 import { BookingWidget } from './booking/BookingWidget'
+import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import PageLoader from '@/app/components/PageLoader'
 
 export default function Hero() {
+  const [loaderDone, setLoaderDone] = useState(false)
   return (
-    <main className="min-h-[100svh] md:h-[100svh] w-full px-2 sm:px-3 pt-2 sm:pt-3 pb-0 overflow-hidden">
-      <div className="h-full w-full rounded-[2rem] bg-white overflow-hidden flex flex-col">
-        <Navbar />
+    <>
+      <PageLoader onComplete={() => setLoaderDone(true)} />
 
-        <div className=" flex-1 flex flex-col lg:flex-row">
-          {/* LEFT */}
-          <div className=" w-full lg:w-1/2 flex flex-col md:gap-10 gap-5 justify-center px-6 md:px-12 lg:px-14 xl:px-20  py-10 md:py-12 ">
-            {/* Na manjim ekranima NE raste u visinu (da ne pojede sliku) */}
-            <div className="flex flex-col ">
-              <p className="text-stone-400 text-xs md:text-sm tracking-[0.3em] uppercase md:mb-4 mb-2">
-                Istra, Hrvatska
-              </p>
+      <main className="min-h-[100svh] md:h-[100svh] w-full px-2 sm:px-3 pt-2 sm:pt-3 pb-0 overflow-hidden">
+        <div className="h-full w-full rounded-[2rem] bg-white overflow-hidden flex flex-col">
+          <motion.section
+            className="hero"
+            initial={{ y: '10%' }}
+            animate={{ y: loaderDone ? 0 : '10%' }}
+            transition={{ duration: 0.7, ease: [0.65, 0, 0.35, 1] }}
+          >
+            <Navbar />
 
-              <h1 className=" text-stone-900 text-[clamp(3.6rem,4.5vw,5.5rem)] leading-[1.1] sm:leading-tight tracking-tight font-playfair">
-                Vaše utočište
-                <br />
-                <span className="text-[#a39e6e]">mira i luksuza</span>
-              </h1>
+            <div className=" flex-1 flex flex-col lg:flex-row">
+              {/* LEFT */}
+              <div className=" w-full lg:w-1/2 flex flex-col md:gap-10 gap-5 justify-center px-6 md:px-12 lg:px-14 xl:px-20  py-10 md:py-12 ">
+                {/* Na manjim ekranima NE raste u visinu (da ne pojede sliku) */}
+                <div className="flex flex-col ">
+                  <p className="text-stone-400 text-xs md:text-sm tracking-[0.3em] uppercase md:mb-4 mb-2">
+                    Istra, Hrvatska
+                  </p>
 
-              <p className="text-stone-500 mt-5 max-w-md font-light leading-relaxed text-[clamp(1.1rem,1.3vw,1.3rem)]">
-                Privatna vila s grijanim bazenom, wellness sadržajima i pogledom na istarske
-                brežuljke.
-              </p>
+                  <h1 className=" text-stone-900 text-[clamp(3.6rem,4.5vw,5.5rem)] leading-[1.1] sm:leading-tight tracking-tight font-playfair">
+                    Vaše utočište
+                    <br />
+                    <span className="text-[#a39e6e]">mira i luksuza</span>
+                  </h1>
+
+                  <p className="text-stone-500 mt-5 max-w-md font-light leading-relaxed text-[clamp(1.1rem,1.3vw,1.3rem)]">
+                    Privatna vila s grijanim bazenom, wellness sadržajima i pogledom na istarske
+                    brežuljke.
+                  </p>
+                </div>
+
+                <div className="sm:mt-6 my-1 ">
+                  <BookingWidget />
+                </div>
+              </div>
+
+              {/* RIGHT (IMAGE) */}
+              <div className="min-h-0 w-full lg:w-1/2 flex-1 p-3 md:p-4 lg:p-6 pb-4 md:pb-4 lg:pb-6">
+                {/* min-h da nikad ne padne na 0 na tablet/mob */}
+                <div className="relative h-full min-h-[280px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-0 w-full overflow-hidden rounded-2xl bg-stone-100">
+                  <Image
+                    src="/media/coverTesting.jpg"
+                    alt="Villa Me and You"
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
             </div>
-
-            <div className="sm:mt-6 my-1 ">
-              <BookingWidget />
-            </div>
-          </div>
-
-          {/* RIGHT (IMAGE) */}
-          <div className="min-h-0 w-full lg:w-1/2 flex-1 p-3 md:p-4 lg:p-6 pb-4 md:pb-4 lg:pb-6">
-            {/* min-h da nikad ne padne na 0 na tablet/mob */}
-            <div className="relative h-full min-h-[280px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-0 w-full overflow-hidden rounded-2xl bg-stone-100">
-              <Image
-                src="/media/coverTesting.jpg"
-                alt="Villa Me and You"
-                fill
-                priority
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover"
-              />
-            </div>
-          </div>
+          </motion.section>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   )
 }

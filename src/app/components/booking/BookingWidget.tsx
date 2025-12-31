@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Calendar } from '@/components/ui/calendar'
 import { useRouter } from 'next/navigation'
 import { getBookingWidgetData } from '@/lib/booking/api'
@@ -16,6 +16,7 @@ type SeasonRule = {
 
 export function BookingWidget() {
   const router = useRouter()
+  const calendarRef = useRef<HTMLDivElement>(null)
 
   const [checkIn, setCheckIn] = useState<Date | undefined>(undefined)
   const [checkOut, setCheckOut] = useState<Date | undefined>(undefined)
@@ -27,7 +28,9 @@ export function BookingWidget() {
   const [defaultMinStay, setDefaultMinStay] = useState(2)
   const [seasonRules, setSeasonRules] = useState<SeasonRule[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
+  // Fetch data
   useEffect(() => {
     async function fetchData() {
       try {
@@ -44,6 +47,26 @@ export function BookingWidget() {
     }
     fetchData()
   }, [])
+
+  // Click outside handler
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (calendarRef.current && !calendarRef.current.contains(event.target as Node)) {
+        setIsCalendarOpen(false)
+        if (checkIn && !checkOut) {
+          setCheckIn(undefined)
+        }
+      }
+    }
+
+    if (isCalendarOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isCalendarOpen, checkIn, checkOut])
 
   function getSeasonForDate(date: Date): SeasonRule | undefined {
     return seasonRules.find((s) => {
@@ -101,6 +124,8 @@ export function BookingWidget() {
 
   function handleSubmit() {
     if (!checkIn || !checkOut) return
+
+    setIsSubmitting(true)
 
     const params = new URLSearchParams({
       propertySlug: PROPERTY_SLUG,
@@ -178,10 +203,28 @@ export function BookingWidget() {
         {/* Submit */}
         <button
           onClick={handleSubmit}
-          disabled={!checkIn || !checkOut}
+          disabled={!checkIn || !checkOut || isSubmitting}
           className="flex items-center justify-center px-4 md:px-5 py-2.5 bg-stone-900 hover:bg-stone-800 disabled:bg-stone-300 disabled:cursor-not-allowed text-white text-[10px] md:text-xs uppercase tracking-wider rounded-full transition"
         >
-          Rezerviraj
+          {isSubmitting ? (
+            <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              />
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              />
+            </svg>
+          ) : (
+            'Rezerviraj'
+          )}
         </button>
       </div>
 
@@ -195,7 +238,10 @@ export function BookingWidget() {
 
       {/* Calendar dropdown */}
       {isCalendarOpen && (
-        <div className="absolute left-0 right-0 md:right-auto bottom-full mb-2 bg-white rounded-2xl shadow-xl border border-stone-100 p-3 md:p-4 z-50">
+        <div
+          ref={calendarRef}
+          className="absolute left-0 right-0 md:right-auto bottom-full mb-2 bg-white rounded-2xl shadow-xl border border-stone-100 p-3 md:p-4 z-50"
+        >
           {isLoading ? (
             <div className="p-6 md:p-8 text-center text-stone-400">Učitavanje...</div>
           ) : (
@@ -221,6 +267,10 @@ export function BookingWidget() {
                   range_start: { backgroundColor: '#a39e6e', color: 'white', borderRadius: '50%' },
                   range_end: { backgroundColor: '#a39e6e', color: 'white', borderRadius: '50%' },
                   range_middle: { backgroundColor: '#e8e6d9' },
+                  outside: { color: '#d1d5db' },
+                }}
+                classNames={{
+                  day_outside: 'text-stone-300 opacity-50',
                 }}
               />
               <p className="text-[10px] md:text-[11px] text-stone-400 mt-2 md:mt-3 text-center">
