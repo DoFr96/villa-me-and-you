@@ -7,9 +7,11 @@ import { BookingWidget } from './booking/BookingWidget'
 import logoImage from '@/../public/media/logo1.png'
 import { twMerge } from 'tailwind-merge'
 import { AnimatePresence, motion } from 'framer-motion'
-const items = ['Home', 'Vila', 'Cjenik', 'Kontakt']
+const items = ['Home', 'Galerija', 'Cjenik', 'Kontakt']
 
-const Navbar = () => {
+const Navbar = ({ variant = 'default' }: { variant?: 'default' | 'inner' }) => {
+  const isInner = variant === 'inner'
+
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
