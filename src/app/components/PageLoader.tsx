@@ -11,14 +11,10 @@ type PageLoaderProps = {
 }
 export default function PageLoader({ onComplete }: PageLoaderProps) {
   const [logoScope, logoAnimate] = useAnimate()
-
-  const [isLoading, setIsLoading] = useState(() => {
-    if (typeof window === 'undefined') return false
-    return !sessionStorage.getItem('hasSeenLoader')
-  })
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    if (!isLoading || !logoScope.current) return
+    if (!logoScope.current) return
     {
       /*
       if (width < 768) {
@@ -42,13 +38,12 @@ export default function PageLoader({ onComplete }: PageLoaderProps) {
       // [logoScope.current, { y: 0 }, { duration: 0.8 }],
     ])
     const timer = setTimeout(() => {
-      sessionStorage.setItem('hasSeenLoader', '1') // 1) zapamti da je loader odrađen
-      setIsLoading(false) // 2) ugasi loader (sakrij komponentu)
-      onComplete?.() // 3) javi parentu da može prikazat stranicu
+      setIsLoading(false)
+      onComplete?.()
     }, 2000)
 
     return () => clearTimeout(timer)
-  }, [isLoading])
+  }, [onComplete])
 
   return (
     <AnimatePresence>
