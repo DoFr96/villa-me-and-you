@@ -1,31 +1,51 @@
+// components/HomeGate.tsx
 'use client'
 
-import { useEffect, useState } from 'react'
-import PageLoader from '../components/PageLoader'
+import { useState, useEffect } from 'react'
+import PageLoader from './PageLoader'
+import { AnimatePresence, motion } from 'framer-motion'
 
 export default function HomeGate({ children }: { children: React.ReactNode }) {
-  const [showLoader, setShowLoader] = useState<boolean | null>(null)
+  const [isHydrated, setIsHydrated] = useState(false)
+  const [shouldShowLoader, setShouldShowLoader] = useState(true)
 
   useEffect(() => {
-    const hasSeen = sessionStorage.getItem('hasSeenLoader')
-    setShowLoader(!hasSeen)
+    // 1. Čim se komponenta učita, provjeri session
+    const hasVisited = sessionStorage.getItem('home-loader-played')
+
+    if (hasVisited) {
+      setShouldShowLoader(false)
+    }
+
+    // 2. Dozvoli renderiranje
+    setIsHydrated(true)
   }, [])
 
-  if (showLoader === null) {
-    // spriječi flash dok ne pročitamo sessionStorage
-    return <div className="min-h-screen bg-white" />
+  // Dok se JS ne učita, renderiraj samo bijeli ekran (nema flickera!)
+  if (!isHydrated) {
+    return <div className="fixed inset-0 z-[100] bg-white" />
   }
 
-  if (showLoader) {
-    return (
-      <PageLoader
-        onComplete={() => {
-          sessionStorage.setItem('hasSeenLoader', '1')
-          setShowLoader(false)
-        }}
-      />
-    )
-  }
+  return (
+    <>
+      <AnimatePresence mode="wait">
+        {shouldShowLoader && (
+          <PageLoader
+            key="page-loader"
+            onComplete={() => {
+              sessionStorage.setItem('home-loader-played', 'true')
+              setShouldShowLoader(false)
+            }}
+          />
+        )}
+      </AnimatePresence>
 
-  return <>{children}</>
+      {/* Sadržaj stranice - ako loader radi, držimo ga skrivenim ali renderiranim */}
+      <div
+        className={shouldShowLoader ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}
+      >
+        {children}
+      </div>
+    </>
+  )
 }

@@ -11,7 +11,7 @@ type PageLoaderProps = {
 }
 export default function PageLoader({ onComplete }: PageLoaderProps) {
   const [logoScope, logoAnimate] = useAnimate()
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     if (!logoScope.current) return
@@ -38,7 +38,7 @@ export default function PageLoader({ onComplete }: PageLoaderProps) {
       // [logoScope.current, { y: 0 }, { duration: 0.8 }],
     ])
     const timer = setTimeout(() => {
-      setIsLoading(false)
+      setIsLoading(true)
       onComplete?.()
     }, 2000)
 
@@ -49,7 +49,7 @@ export default function PageLoader({ onComplete }: PageLoaderProps) {
     <AnimatePresence>
       {isLoading && (
         <motion.div
-          className="fixed inset-0 z-50 bg-white"
+          className="fixed inset-0 z-[100] bg-white"
           initial={{ y: 0 }}
           exit={{ y: '-100%' }}
           transition={{ duration: 0.7, ease: [0.65, 0, 0.35, 1] }}
