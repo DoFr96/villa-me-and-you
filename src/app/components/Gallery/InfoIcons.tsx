@@ -14,7 +14,15 @@ const stats = [
 
 const InfoIcons = () => {
   return (
-    <section className="py-5 md:py-10 border-y border-stone-100 my-8 md:my-10">
+    <section className="py-12 md:py-16">
+      {/* Header - isti stil kao Opremljenost */}
+      <div className="mb-8 md:mb-12">
+        <span className="text-xs uppercase tracking-[0.3em] text-stone-400 font-medium">
+          General Info
+        </span>
+      </div>
+
+      {/* Grid */}
       <div className="grid grid-cols-3 md:grid-cols-6 gap-y-8 gap-x-4">
         {stats.map(({ icon: Icon, label, value, highlight }) => (
           <div key={label} className="flex flex-col items-center gap-3 group">

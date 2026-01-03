@@ -145,8 +145,15 @@ export default function Gallery({ images }: GalleryProps) {
         <InfoIcons />
 
         {/* Description */}
-        <div className="max-w-3xl mx-auto text-center py-8">
-          <p className="text-stone-600 text-lg leading-relaxed font-light">
+        <div className="relative max-w-3xl mx-auto text-center py-8">
+          <div
+            className="pointer-events-none absolute -inset-20 md:-inset-32"
+            style={{
+              background:
+                'radial-gradient(circle, rgba(163,158,110,0.08) 0%, rgba(163,158,110,0.05) 35%, transparent 65%)',
+            }}
+          />
+          <p className="relative text-stone-600 text-lg leading-relaxed font-light">
             Uživajte u vili gdje se tradicija Istre spaja s modernim komforom: istarski kamen,
             masline starije od 300 godina i potpuni mir. Grijani bazen dostupan je od 1.3. do 1.12.,
             a privatni wellness donosi saunu, jacuzzi, ležaljku i tuš — za reset bez izlaska iz
