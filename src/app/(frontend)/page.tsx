@@ -29,17 +29,17 @@ export default async function HomePage() {
 
   return (
     <>
+      <PageLoader />
       <style dangerouslySetInnerHTML={{ __html: `:root { --page-bg: #a39e6e; }` }} />
-      <HomeWithLoader>
-        <section>
-          <Hero />
-          <Intro />
-          <Gallery />
-          <Location />
-          <Faqs />
-          <Contact />
-        </section>
-      </HomeWithLoader>
+
+      <section>
+        <Hero />
+        <Intro />
+        <Gallery />
+        <Location />
+        <Faqs />
+        <Contact />
+      </section>
     </>
   )
 }

@@ -22,7 +22,7 @@ const villaImages = [
 
 export default function GalleryServer() {
   return (
-    <section className="max-w-7xl mx-auto px-4 py-8">
+    <section className="max-w-7xl mx-auto px-5 py-8">
       <Gallery images={villaImages} />
     </section>
   )
