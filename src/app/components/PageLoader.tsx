@@ -11,10 +11,23 @@ type PageLoaderProps = {
 }
 export default function PageLoader({ onComplete }: PageLoaderProps) {
   const [logoScope, logoAnimate] = useAnimate()
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
+  const [shouldRender, setShouldRender] = useState(false)
 
   useEffect(() => {
-    if (!logoScope.current) return
+    const hasSeenLoader = sessionStorage.getItem('hasSeenLoader')
+
+    if (hasSeenLoader) {
+      onComplete?.()
+      return
+    }
+
+    setShouldRender(true)
+    setIsLoading(true)
+  }, [])
+
+  useEffect(() => {
+    if (!isLoading || !logoScope.current) return
     {
       /*
       if (width < 768) {
@@ -39,11 +52,14 @@ export default function PageLoader({ onComplete }: PageLoaderProps) {
     ])
     const timer = setTimeout(() => {
       setIsLoading(false)
+      sessionStorage.setItem('hasSeenLoader', 'true')
       onComplete?.()
     }, 2000)
 
     return () => clearTimeout(timer)
   }, [onComplete])
+
+  if (!shouldRender) return null
 
   return (
     <AnimatePresence>

@@ -164,10 +164,17 @@ export default function Gallery({ images }: GalleryProps) {
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentIndex}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.3 }}
+                    initial={{ opacity: 0, scale: 0.95, x: 50 }}
+                    animate={{ opacity: 1, scale: 1, x: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, x: -50 }}
+                    transition={{ duration: 0.2 }}
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0.2}
+                    onDragEnd={(_, info) => {
+                      if (info.offset.x > 100) goToPrev()
+                      if (info.offset.x < -100) goToNext()
+                    }}
                     className="relative w-full h-full max-w-6xl max-h-[70vh]"
                   >
                     <Image
