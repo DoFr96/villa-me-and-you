@@ -56,7 +56,7 @@ const Intro = () => {
                 objectFit="cover"
                 alt="health"
                 sizes="50vh"
-                className="rounded-2xl bg-yellow-200"
+                className="rounded-2xl"
               />
             </div>
           </div>

@@ -64,8 +64,7 @@ export default function Gallery() {
 
           <div
             ref={scrollRef}
-            className="flex gap-4 overflow-x-auto px-8 md:px-16 lg:px-20 pb-4 scroll-smooth snap-x snap-mandatory scrollbar-hide overscroll-x-contain"
-            style={{ WebkitOverflowScrolling: 'auto' }}
+            className="flex gap-4 overflow-x-auto px-8 md:px-16 lg:px-20 pb-4 scroll-smooth snap-x snap-mandatory scrollbar-hide overscroll-x-contain touch-pan-x"
           >
             {images.map((img, i) => (
               <div
