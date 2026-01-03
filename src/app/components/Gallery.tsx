@@ -64,12 +64,12 @@ export default function Gallery() {
 
           <div
             ref={scrollRef}
-            className="flex gap-4 overflow-x-auto px-8 md:px-16 lg:px-20 pb-4 scroll-smooth snap-x snap-mandatory scrollbar-hide overscroll-x-contain touch-pan-x"
+            className="flex gap-4 overflow-x-auto px-8 md:px-16 lg:px-20 pb-4 snap-x snap-mandatory scrollbar-hide overscroll-x-contain touch-pan-x"
           >
             {images.map((img, i) => (
               <div
                 key={i}
-                className="relative flex-shrink-0 w-[280px] md:w-[350px] lg:w-[400px] aspect-[3/4] rounded-2xl overflow-hidden snap-start group cursor-pointer"
+                className="relative flex-shrink-0 w-[280px] md:w-[350px] lg:w-[400px] aspect-[3/4] rounded-2xl overflow-hidden snap-center snap-always group cursor-pointer"
               >
                 <Image
                   src={img.src}
