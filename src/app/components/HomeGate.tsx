@@ -1,51 +1,39 @@
-// components/HomeGate.tsx
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import PageLoader from './PageLoader'
-import { AnimatePresence, motion } from 'framer-motion'
 
-export default function HomeGate({ children }: { children: React.ReactNode }) {
-  const [isHydrated, setIsHydrated] = useState(false)
-  const [shouldShowLoader, setShouldShowLoader] = useState(true)
+export default function HomeWithLoader({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname()
+  const [showLoader, setShowLoader] = useState(false)
 
   useEffect(() => {
-    // 1. Čim se komponenta učita, provjeri session
-    const hasVisited = sessionStorage.getItem('home-loader-played')
-
-    if (hasVisited) {
-      setShouldShowLoader(false)
+    // Loader samo na homepage
+    if (pathname !== '/') {
+      setShowLoader(false)
+      return
     }
 
-    // 2. Dozvoli renderiranje
-    setIsHydrated(true)
-  }, [])
+    // Ako je već prikazan u ovom tabu, ne prikazuj opet
+    const alreadyShown = sessionStorage.getItem('homeLoaderShown')
+    if (alreadyShown) {
+      setShowLoader(false)
+      return
+    }
 
-  // Dok se JS ne učita, renderiraj samo bijeli ekran (nema flickera!)
-  if (!isHydrated) {
-    return <div className="fixed inset-0 z-[100] bg-white" />
+    setShowLoader(true)
+  }, [pathname])
+
+  const handleComplete = () => {
+    sessionStorage.setItem('homeLoaderShown', '1')
+    setShowLoader(false)
   }
 
   return (
     <>
-      <AnimatePresence mode="wait">
-        {shouldShowLoader && (
-          <PageLoader
-            key="page-loader"
-            onComplete={() => {
-              sessionStorage.setItem('home-loader-played', 'true')
-              setShouldShowLoader(false)
-            }}
-          />
-        )}
-      </AnimatePresence>
-
-      {/* Sadržaj stranice - ako loader radi, držimo ga skrivenim ali renderiranim */}
-      <div
-        className={shouldShowLoader ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}
-      >
-        {children}
-      </div>
+      {showLoader && <PageLoader onComplete={handleComplete} />}
+      {children}
     </>
   )
 }

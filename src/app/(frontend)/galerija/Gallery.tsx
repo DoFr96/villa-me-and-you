@@ -164,24 +164,18 @@ export default function Gallery({ images }: GalleryProps) {
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentIndex}
-                    dragMomentum={false}
-                    initial={{ scale: 0.98 }}
-                    animate={{ scale: 1 }}
-                    exit={{ scale: 0.98 }}
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.98 }}
                     transition={{ duration: 0.2 }}
                     drag="x"
                     dragConstraints={{ left: 0, right: 0 }}
                     dragElastic={0.5}
                     onDragEnd={(_, info) => {
-                      const offset = info.offset.x
-                      const velocity = info.velocity.x
-
-                      const offsetThreshold = 60
-                      const velocityThreshold = 500
-
-                      if (offset > offsetThreshold || velocity > velocityThreshold) goToPrev()
-                      else if (offset < -offsetThreshold || velocity < -velocityThreshold)
-                        goToNext()
+                      const swipe = info.offset.x
+                      const threshold = 60
+                      if (swipe > threshold) goToPrev()
+                      else if (swipe < -threshold) goToNext()
                     }}
                     className="relative w-full h-full max-w-6xl max-h-[70vh]"
                   >

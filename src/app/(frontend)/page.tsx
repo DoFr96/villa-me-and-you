@@ -16,7 +16,8 @@ import { Amenities } from '../components/Amenities'
 import Contact from '../components/Contact'
 import Faqs from '../components/Faqs'
 import Opening from '../components/Opening'
-import HomeGate from '../components/HomeGate'
+import PageLoader from '../components/PageLoader'
+import HomeWithLoader from '../components/HomeGate'
 
 export default async function HomePage() {
   const headers = await getHeaders()
@@ -29,7 +30,7 @@ export default async function HomePage() {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: `:root { --page-bg: #a39e6e; }` }} />
-      <HomeGate>
+      <HomeWithLoader>
         <section>
           <Hero />
           <Intro />
@@ -38,7 +39,7 @@ export default async function HomePage() {
           <Faqs />
           <Contact />
         </section>
-      </HomeGate>
+      </HomeWithLoader>
     </>
   )
 }
