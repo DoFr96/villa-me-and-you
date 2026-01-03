@@ -13,10 +13,10 @@ export default function Hero() {
     <>
       <PageLoader onComplete={() => setLoaderDone(true)} />
 
-      <main className="min-h-[100svh] md:h-[100svh] w-full px-2 sm:px-3 pt-2 sm:pt-3 pb-0 overflow-hidden">
+      <main className=" w-full px-2 sm:px-3 pt-2 sm:pt-3 pb-0 overflow-hidden">
         <div className="h-full w-full rounded-[2rem] bg-white overflow-hidden flex flex-col">
           <motion.section
-            className="hero"
+            className="hero flex flex-col h-full min-h-[100dvh]"
             initial={{ y: '10%' }}
             animate={{ y: loaderDone ? 0 : '10%' }}
             transition={{ duration: 0.7, ease: [0.65, 0, 0.35, 1] }}
