@@ -57,7 +57,7 @@ export default function PageLoader({ onComplete }: PageLoaderProps) {
     }, 2000)
 
     return () => clearTimeout(timer)
-  }, [onComplete])
+  }, [isLoading])
 
   if (!shouldRender) return null
 
